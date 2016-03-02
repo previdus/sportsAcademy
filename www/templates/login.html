@@ -1,0 +1,18 @@
+<ion-view  title="Login">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <form class="list">
+            <ion-list>
+                <label class="item item-input">
+                      <input type="text" placeholder="user name" data-ng-model="uname">
+                </label>
+                <label class="item item-input">
+                    <input type="password" placeholder="password" data-ng-model="pwd">
+                </label>
+            </ion-list>
+            <div class="spacer" style="height: 40px;"></div>
+            <button ng-click="authenticateCredentials()" class="button button-stable button-block ">Log in
+            </button>
+            {{errorDetail}}
+        </form>
+    </ion-content>
+</ion-view>
