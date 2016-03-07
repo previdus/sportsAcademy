@@ -21,7 +21,7 @@ angular.module('app.routes', [])
   })
 
       .state('menu.yourGroups', {
-    url: '/select-group',
+    url: '/groups',
     views: {
       'side-menu': {
         templateUrl: 'templates/yourGroups.html',
@@ -31,7 +31,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.markAttenadance', {
-    url: '/mark-attendance',
+    url: '/groups/:groupId',
     views: {
       'side-menu': {
         templateUrl: 'templates/markAttenadance.html',

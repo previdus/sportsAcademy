@@ -1,11 +1,12 @@
 <ion-view title="Your Groups">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <form class="list"></form>
-        <button class="button button-stable button-outline button-block ">Select Group</button>
         <ion-list>
-            <ion-item ui-sref="menu.markAttenadance">Vaishali</ion-item>
-            <ion-item ui-sref="menu.markAttenadance">Avantika</ion-item>
-            <ion-item ui-sref="menu.markAttenadance">Kaushambi</ion-item>
+        	<ion-item ng-repeat="group in groups" type="item-text-wrap" href="#/side-menu/groups/{{group.group_id}}">
+        			{{group.name}}
+        	</ion-item>
         </ion-list>
+
+		<button class="button button-stable button-block " ng-click="getGroups()">Tap me to fetch Groups!</button>
     </ion-content>
 </ion-view>
