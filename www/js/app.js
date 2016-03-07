@@ -21,7 +21,12 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.facades', '
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    db = $cordovaSQLite.openDB("my.db");
+    if (window.cordova && window.SQLitePlugin) {
+       db = $cordovaSQLite.openDB( 'accounts.db', 1 );
+      } else {
+        db = window.openDatabase('accounts', '1.0', 'accounts.db', 100 * 1024 * 1024);
+      }
+    //db = $cordovaSQLite.openDB("my.db");
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_users (id INTEGER NOT NULL PRIMARY KEY, name TEXT NOT NULL, user_name TEXT NOT NULL, pwd TEXT NOT NULL, api_key TEXT NOT NULL)");
 $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_loggedin_user (id INTEGER NOT NULL PRIMARY KEY, name TEXT NOT NULL, api_key TEXT NOT NULL)");
 $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_groups (group_id INTEGER NOT NULL , name TEXT NOT NULL, user_id INTEGER NOT NULL)");
