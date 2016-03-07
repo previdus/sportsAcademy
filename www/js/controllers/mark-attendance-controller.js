@@ -8,9 +8,10 @@ angular.module('app.mark-attendance-controller', [])
 	$scope.getStudents = function(){
 			
 			var selectedGrpId = $stateParams.groupId;
+			$scope.selectedGroupName = $stateParams.groupName;
 			
 			alert('getting students for group ' + selectedGrpId);
-			markAttenadanceFacade.getStudents(selectedGrpId,
+			markAttenadanceFacade.getAllStudents(selectedGrpId,
 				function success(allStudents){
 					alert(allStudents.length);
 					if(allStudents.length > 0){

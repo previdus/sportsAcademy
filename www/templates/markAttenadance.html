@@ -1,12 +1,11 @@
-<ion-view title="Mark Attenadance">
+<ion-view title="Mark Attenadance" >
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <h3>Group:</h3>
+        <h3>Selected Group:</h3>{{selectedGroupName}}
         <ion-list>
-        	<ion-item ng-repeat="student in students" type="item-text-wrap" href="#/side-menu/markAttenadance/">
-        		<h1>{{student.name}}</h1>
+        	<ion-item ng-repeat="student in students" type="item-text-wrap" class="background-color:balanced">
+        		{{student.name}}
         	</ion-item>
         </ion-list>
      
-        <button class="button button-positive button-block  button-full" ng-click="getStudents()">Add Attendance!</button>
     </ion-content>
 </ion-view>

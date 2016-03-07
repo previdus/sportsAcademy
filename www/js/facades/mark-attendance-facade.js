@@ -8,7 +8,7 @@ angular.module('app.mark-attendance-facade', [])
 		}
 
 	this.getAllStudents = function(groupId, successClbk, dbAccessIssueClbk){
-			grpAndStudentDatabaseService.getGroups(groupId, successClbk, dbAccessIssueClbk);
+			grpAndStudentDatabaseService.getStudents(groupId, successClbk, dbAccessIssueClbk);
 		}
 
 	this.addAttendance = function(successClbk, dbAccessIssueClbk){

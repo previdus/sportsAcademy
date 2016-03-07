@@ -1,18 +1,26 @@
-<ion-view  title="Login">
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <form class="list">
-            <ion-list>
-                <label class="item item-input">
-                      <input type="text" placeholder="user name" ng-model="uname">
-                </label>
-                <label class="item item-input">
-                    <input type="password" placeholder="password" ng-model="pwd">
-                </label>
-            </ion-list>
-            <div class="spacer" style="height: 40px;"></div>
-            <button ng-click="authenticateCredentials()" class="button button-stable button-block ">Log in
-            </button>
-            {{errorDetail}}
-        </form>
-    </ion-content>
-</ion-view>
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Login</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="authenticateCredentials()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="loginData.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="loginData.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Log in</button>
+        </label>
+        {{errorDetail}}
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

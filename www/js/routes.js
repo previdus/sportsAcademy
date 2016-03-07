@@ -23,7 +23,7 @@ angular.module('app.routes', [])
       .state('menu.yourGroups', {
     url: '/groups',
     views: {
-      'side-menu': {
+      'tab-attendance': {
         templateUrl: 'templates/yourGroups.html',
         controller: 'yourGroupsCtrl'
       }
@@ -31,9 +31,9 @@ angular.module('app.routes', [])
   })
 
   .state('menu.markAttenadance', {
-    url: '/groups/:groupId',
+    url: '/groups/:groupId/:groupName',
     views: {
-      'side-menu': {
+      'tab-attendance': {
         templateUrl: 'templates/markAttenadance.html',
         controller: 'markAttenadanceCtrl'
       }
@@ -45,7 +45,7 @@ angular.module('app.routes', [])
   .state('menu.syncData', {
     url: '/sync',
     views: {
-      'side-menu': {
+      'tab-sync': {
         templateUrl: 'templates/syncData.html',
         controller: 'syncDataCtrl'
       }
@@ -56,7 +56,7 @@ angular.module('app.routes', [])
     cache: false,
     url: '/login',
     views: {
-      'no-menu': {
+      'login': {
         templateUrl: 'templates/login.html',
         controller: 'loginCtrl'
       }

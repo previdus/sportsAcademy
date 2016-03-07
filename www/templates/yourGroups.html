@@ -2,11 +2,9 @@
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <form class="list"></form>
         <ion-list>
-        	<ion-item ng-repeat="group in groups" type="item-text-wrap" href="#/side-menu/groups/{{group.group_id}}">
+        	<ion-item ng-repeat="group in groups" type="item-text-wrap" href="#/side-menu/groups/{{group.group_id}}/{{group.name}}">
         			{{group.name}}
         	</ion-item>
         </ion-list>
-
-		<button class="button button-stable button-block " ng-click="getGroups()">Tap me to fetch Groups!</button>
     </ion-content>
 </ion-view>
