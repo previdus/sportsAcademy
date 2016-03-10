@@ -3,12 +3,14 @@ angular.module('app.grpAndStudentDb', [])
 
 .service('grpAndStudentDatabaseService', ['$cordovaSQLite', function($cordovaSQLite){
 
-	this.deleteAllGrpsAndStudents = function(user_id, successClbk, dbAccessIssue){
+	this.deleteAllGrpsAndStudents = function(successClbk, dbAccessIssue){
 		if(!db)
 			dbAccessIssue();
-		$cordovaSQLite.execute(db, "delete from m_groups where user_id = ?",[user_id])
+		var deleteGrpQuery = "delete from m_groups where user_id in (select id from m_loggedin_user)";
+		var deleteStudentQuery = "delete from m_students where group_id in ( select group_id from m_groups where user_id in (select id from m_loggedin_user))";
+		$cordovaSQLite.execute(db, deleteStudentQuery ,[])
 			.then(function(res){
-				$cordovaSQLite.execute(db, "delete from m_students where group_id in ( select group_id from m_groups where user_id = ?);",[user_id])
+				$cordovaSQLite.execute(db, deleteGrpQuery ,[])
 					.then(function(res){
 						successClbk();
 					 },
@@ -40,13 +42,39 @@ angular.module('app.grpAndStudentDb', [])
 			
 	}
 
-	this.getGroups = function(userId, successClbk, dbAccessIssueClbk){
+	this.saveAttendance = function(group_id, userId, date,present_list, absent_list, successClbk, dbAccessIssueClbk){
 		if(!db)
 			dbAccessIssue();
-		var query = "select * from m_groups where user_id = ?";
-		$cordovaSQLite.execute(db,query,[userId]).then(function(result) {
+		var query = "insert into m_attendance(group_id,user_id,date,present_list,absent_list) values(?,?,?,?,?)";
+		$cordovaSQLite.execute(db,query,[group_id, userId, date, present_list,absent_list]).then(function(result) {
+			successClbk();
+		}, function(error) {
+			dbAccessIssueClbk();
+		});
+	}
+
+
+	this.getSavedAttendance = function(successClbk, dbAccessIssueClbk){
+		if(!db)
+			dbAccessIssue();
+		var query = "select * from m_attendance where user_id in (select id from m_loggedin_user)";
+		$cordovaSQLite.execute(db,query,[]).then(function(result) {
 			successClbk(result.rows);
 		}, function(error) {
+			dbAccessIssueClbk();
+		});
+	}
+	
+
+	this.getGroups = function(successClbk, dbAccessIssueClbk){
+		if(!db)
+			dbAccessIssue();
+
+		var query = "select * from m_groups where user_id in (select id from m_loggedin_user)";
+		$cordovaSQLite.execute(db,query,[]).then(function(result) {
+			successClbk(result.rows);
+		}, function(error) {
+			alert(error);
 			dbAccessIssueClbk();
 		});
 	}

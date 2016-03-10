@@ -9,7 +9,7 @@
         <ion-nav-view name="side-menu"></ion-nav-view>
 
             <!-- TABS -->
-    <ion-tabs>
+    <ion-tabs ng-class="{'tabs-item-hide': true}">
 
       <ion-tab title="Attendance" icon-off="ion-search" icon-on="ion-search" href="#/app/search">
         <ion-nav-view name="tab-attendance"></ion-nav-view>
@@ -32,6 +32,7 @@
             <div class="title">Menu</div>
         </ion-header-bar>
         <ion-content padding="false" class="side-menu-left has-header">
+         Welcome {{loggedInUser.name}}
             <ion-list>
                 <ion-item ui-sref="menu.yourGroups" menu-close="">Add Attendance</ion-item>
                 <ion-item ui-sref="menu.syncData" menu-close="">Sync Data</ion-item>

@@ -17,7 +17,49 @@ angular.module('app.userDb', [])
 			},
 			function(err){dbAccessIssue();})	
 	}
+
+
+	this.updateLoggedInUserDetails = function(user_id, name, apiKey, successClbk, dbAccessIssue){
+		if(!db)
+		successClbk();	
+		var query = "insert into m_loggedin_user(id, name, api_key) values(?,?,?)";
+		$cordovaSQLite.execute(db, "delete from m_loggedin_user",[])
+			.then(function(res){
+				$cordovaSQLite.execute(db,query,[user_id, name, apiKey])
+					.then(function(res){
+						successClbk();
+					 },
+					 function(err){ dbAccessIssue();})	
+			},
+			function(err){dbAccessIssue();})	
+	}
+
+
+	this.getLoggedInUserDetails = function(successClbk, noUserLoggedIn, dbAccessIssue){
+		var query = "select * from m_loggedin_user";
+		$cordovaSQLite.execute(db,query,[]).then(function(result) {
+			if(result.rows.length > 0) {
+				successClbk(result.rows.item(0));
+			} else {
+				noUserLoggedIn();
+			}
+		}, function(error) {
+			dbAccessIssue();
+		});
+			
+	}
+
+	this.deleteLoggedInUserDetails = function(successClbk, dbAccessIssueClbk){
+		var query = "delete from m_loggedin_user";
+		$cordovaSQLite.execute(db,query,[]).then(function(result) {
+			successClbk();
+		}, function(error) {
+			dbAccessIssueClbk();
+		});
+			
+	}
 	
+
 	
 	this.validateCredentials = function(userName, password, successClbk, incorrectCredentialClbk, dbAccessIssue){
 		

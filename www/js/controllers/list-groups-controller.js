@@ -7,7 +7,7 @@ angular.module('app.list-groups-controller', [])
 .controller('yourGroupsCtrl', ['$scope','$state' , 'markAttenadanceFacade' , function($scope, $state, markAttenadanceFacade) {
 	
   	$scope.groups = [];
-  	
+  
 	$scope.getGroups = function(){
 
 			markAttenadanceFacade.getAllGroups( 

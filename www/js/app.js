@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var db = null;
-var loggedInUser = {id:"", name:"", apiKey:""};
+
 
 angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.facades', 'app.api-services', 'app.database-services','app.routes', 'app.directives'])
 
@@ -22,7 +22,7 @@ angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.facades', '
       StatusBar.styleDefault();
     }
     if (window.cordova && window.SQLitePlugin) {
-       db = $cordovaSQLite.openDB( 'accounts.db', 1 );
+       db = $cordovaSQLite.openDB( 'accounts.db');
       } else {
         db = window.openDatabase('accounts', '1.0', 'accounts.db', 100 * 1024 * 1024);
       }

@@ -21,6 +21,7 @@ angular.module('app.routes', [])
   })
 
       .state('menu.yourGroups', {
+       cache: false, 
     url: '/groups',
     views: {
       'tab-attendance': {
@@ -31,6 +32,7 @@ angular.module('app.routes', [])
   })
 
   .state('menu.markAttenadance', {
+    cache: false,
     url: '/groups/:groupId/:groupName',
     views: {
       'tab-attendance': {
@@ -43,6 +45,7 @@ angular.module('app.routes', [])
   
 
   .state('menu.syncData', {
+    cache: false,
     url: '/sync',
     views: {
       'tab-sync': {

@@ -1,11 +1,19 @@
 <ion-view title="Mark Attenadance" >
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <h3>Selected Group:</h3>{{selectedGroupName}}
+        	<h3>Selected Group: {{selectedGroupName}}</h3>
         <ion-list>
         	<ion-item ng-repeat="student in students" type="item-text-wrap" class="background-color:balanced">
+        		<div class="{{student.Color}}" ng-model="student.Color" ng-click="toggleChkBox(student)">
+        		<input type="checkbox" ng-model="student.Selected" style="display:none">
         		{{student.name}}
+        		</div>
         	</ion-item>
         </ion-list>
      
     </ion-content>
+    <ion-footer-bar align-title="left" class="bar-assertive" ng-click="markAttenadance()">
+  <div class="buttons" >
+    <h1 class="title" >Add Attendance</h1>
+  </div>
+</ion-footer-bar>
 </ion-view>

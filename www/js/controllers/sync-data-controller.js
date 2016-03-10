@@ -4,11 +4,11 @@ angular.module('app.sync-data-controller', [])
 .controller('syncDataCtrl', ['$scope','$state' , 'syncDataFacade' , function($scope, $state, syncDataFacade) {
 	
 	$scope.pullGrpAndStudentData = function(){
-			alert('cdd');
-			alert(loggedInUser.apiKey);
+			
 			syncDataFacade.pull( 
 				function success(){
-					$state.go('menu.yourGroups'); 
+				 alert('Successfully Pulled data');
+					 
 			}, function failure(message){
 				$scope.errorDetail = message;
 			}, function internetIssue(status){
@@ -18,6 +18,14 @@ angular.module('app.sync-data-controller', [])
 			});
 				
 		};	
+
+		$scope.getNoOfAttendanceToBePushed = function(){
+		syncDataFacade.getNoOfAttendanceToBePushed(function success(noOfAttendanceToBeSaved){
+				$scope.noOfAttendanceToBeSavedToServer = noOfAttendanceToBeSaved;	
+		})
+	}
+
+	$scope.getNoOfAttendanceToBePushed();
 }])
       
 

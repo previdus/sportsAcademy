@@ -1,9 +1,10 @@
 <ion-view title="Your Groups">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <form class="list"></form>
+        <h3>Select your Group</h3>
         <ion-list>
         	<ion-item ng-repeat="group in groups" type="item-text-wrap" href="#/side-menu/groups/{{group.group_id}}/{{group.name}}">
-        			{{group.name}}
+        			{{group.name}} 
         	</ion-item>
         </ion-list>
     </ion-content>

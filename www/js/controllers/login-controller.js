@@ -7,14 +7,18 @@ angular.module('app.login-controller', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
+
+
    
-.controller('loginCtrl', ['$scope','$state' , '$ionicModal','loginFacade' , function($scope, $state, $ionicModal, loginFacade) {
+.controller('loginCtrl', ['$scope','$rootScope','$state' , '$ionicModal','loginFacade' , function($scope, $rootScope,$state, $ionicModal, loginFacade) {
 	
 	$scope.loginData = {};
+	$rootScope.loggedInUser = {};
 	$scope.authenticateCredentials = function(){
 			
 			loginFacade.login($scope.loginData.username, $scope.loginData.password, 
 				function success(){
+					
 					$state.go('menu.yourGroups'); 
 			}, function inCorrectCredentials(message){
 				$scope.errorDetail = message;
@@ -26,22 +30,12 @@ angular.module('app.login-controller', [])
 				
 		};
 
+	$scope.logout = function(){
+		loginFacade.logout(function(){}, function(){});
+	}	
 
-	$ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };		
+	$scope.logout();
+	
 }])
 
 
