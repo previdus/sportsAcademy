@@ -1,7 +1,7 @@
 angular.module('app.sync-data-facade', [])
 
 
-.service('syncDataFacade', ['pullDataApiService','grpAndStudentDatabaseService', '$rootScope', function(pullDataApiService, grpAndStudentDatabaseService,$rootScope){
+.service('syncDataFacade', ['pullDataApiService','grpAndStudentDatabaseService', 'pushDataApiService','$rootScope', function(pullDataApiService, grpAndStudentDatabaseService,pushDataApiService,$rootScope){
 
 	this.getNoOfAttendanceToBePushed = function(successClbk){
 		grpAndStudentDatabaseService.getSavedAttendance(function success(rows){
@@ -23,6 +23,7 @@ angular.module('app.sync-data-facade', [])
 						angular.forEach(grpStudentData.students, function(studentObj,idx){
 							grpAndStudentDatabaseService.InsertStudent(studentObj.student_id, studentObj.student_name,studentObj.group_id);
 						});
+
 						successClbk();
 					},
 					function dbAccessIssue(){
@@ -31,8 +32,34 @@ angular.module('app.sync-data-facade', [])
 			},  
 			function internetIssue(){
 				internetIssueClbk();
-			})}
-}])
+			})
+	}
+
+	this.push = function($scope, internetIssueClbk, dbAccessIssueClbk){
+			grpAndStudentDatabaseService.getSavedAttendance(function success(savedAttendanceData){
+				if(savedAttendanceData.length > 0){
+					for(var i = 0; i< savedAttendanceData.length; i++){
+						var attendance = savedAttendanceData.item(i);
+						pushDataApiService.pushAttendanceData(
+							$rootScope.loggedInUser.apiKey,
+							attendance.group_id,
+							attendance.user_id,
+							attendance.date,
+							attendance.present_list,
+							attendance.absent_list,
+							attendance.rowid, 
+							function success(data, row_id){
+								if(data.success){
+									grpAndStudentDatabaseService.deleteAttendance(row_id);
+									$scope.noOfAttendanceToBeSavedToServer = $scope.noOfAttendanceToBeSavedToServer-1;
+								}
+							},internetIssueClbk
+						);	
+					}
+				}
+			}, dbAccessIssueClbk)
+	    }	
+   }])
 
 
 

@@ -42,6 +42,7 @@ angular.module('app.grpAndStudentDb', [])
 			
 	}
 
+
 	this.saveAttendance = function(group_id, userId, date,present_list, absent_list, successClbk, dbAccessIssueClbk){
 		if(!db)
 			dbAccessIssue();
@@ -53,11 +54,22 @@ angular.module('app.grpAndStudentDb', [])
 		});
 	}
 
+	this.deleteAttendance = function(rowId){	
+		if(!db)
+			dbAccessIssue();
+		$cordovaSQLite.execute(db, "delete from m_attendance where rowid = ?;",[rowId])
+			.then(function(res){
+				
+			},
+			function(err){})
+			
+	}
+
 
 	this.getSavedAttendance = function(successClbk, dbAccessIssueClbk){
 		if(!db)
 			dbAccessIssue();
-		var query = "select * from m_attendance where user_id in (select id from m_loggedin_user)";
+		var query = "select *, rowid from m_attendance where user_id in (select id from m_loggedin_user)";
 		$cordovaSQLite.execute(db,query,[]).then(function(result) {
 			successClbk(result.rows);
 		}, function(error) {

@@ -10,15 +10,30 @@ angular.module('app.login-controller', [])
 
 
    
-.controller('loginCtrl', ['$scope','$rootScope','$state' , '$ionicModal','loginFacade' , function($scope, $rootScope,$state, $ionicModal, loginFacade) {
+.controller('loginCtrl', ['$scope','$rootScope','$state' , '$ionicModal','loginFacade', '$cordovaDatePicker' , function($scope, $rootScope,$state, $ionicModal, loginFacade, $cordovaDatePicker) {
 	
 	$scope.loginData = {};
 	$rootScope.loggedInUser = {};
+
+	$scope.currentDate = new Date();
+ 
+	$scope.datePickerCallback = function () {
+		var val = '';
+		if (!val) {	
+			console.log('Date not selected');
+		} else {
+			console.log('Selected date is : ', val);
+		}
+	};
+
+	$scope.closeLogin = function(){
+		alert('closed');
+	}
+
 	$scope.authenticateCredentials = function(){
 			
 			loginFacade.login($scope.loginData.username, $scope.loginData.password, 
 				function success(){
-					
 					$state.go('menu.yourGroups'); 
 			}, function inCorrectCredentials(message){
 				$scope.errorDetail = message;
@@ -28,13 +43,13 @@ angular.module('app.login-controller', [])
 				$scope.errorDetail =  "Error connecting database! Please contact the vendor!";
 			});
 				
-		};
+	};
 
 	$scope.logout = function(){
 		loginFacade.logout(function(){}, function(){});
 	}	
 
-	$scope.logout();
+	//$scope.logout();
 	
 }])
 

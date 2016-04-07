@@ -37,7 +37,7 @@ angular.module('app.login-api', [])
 }])
 
 .config(["loginApiServiceProvider", function(loginApiServiceProvider){
-	loginApiServiceProvider.config("http://websites.avyay.co.in/sms-demo/api/");
+	loginApiServiceProvider.config("http://websites.avyay.co.in/bfc/api/");
 }])
 
 

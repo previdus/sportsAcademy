@@ -7,7 +7,7 @@ angular.module('app.sync-data-controller', [])
 			
 			syncDataFacade.pull( 
 				function success(){
-				 alert('Successfully Pulled data');
+				 alert('Successfully Pulled data!');
 					 
 			}, function failure(message){
 				$scope.errorDetail = message;
@@ -16,8 +16,17 @@ angular.module('app.sync-data-controller', [])
 			}, function dbAccessIssue(){
 				$scope.errorDetail =  "Error connecting database! Please contact the vendor!";
 			});
-				
 		};	
+
+		$scope.uploadAttendance = function(){
+			syncDataFacade.push($scope,
+				function internetIssue(){
+					alert('Please check your internet connection');
+				}, 
+				function dbAccessIssue(){
+					alert('Database issue');
+				});
+		}
 
 		$scope.getNoOfAttendanceToBePushed = function(){
 		syncDataFacade.getNoOfAttendanceToBePushed(function success(noOfAttendanceToBeSaved){

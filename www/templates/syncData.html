@@ -1,6 +1,8 @@
 <ion-view title="Sync Data">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <h5>{{noOfAttendanceToBeSavedToServer}} Attendance records to be sent to server.</h5>
+        <h5>{{noOfAttendanceToBeSavedToServer}} Attendance records to be sent to server. Press Upload Attendance Button!</h5>
+        <button class="button button-stable button-block " ng-click="uploadAttendance()">Upload Attendance!</button>
+        <h5>Press Sync to download the group and student list!</h5>
         <button class="button button-stable button-block " ng-click="pullGrpAndStudentData()">Tap me to Sync!</button>
     </ion-content>
 </ion-view>

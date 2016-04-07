@@ -31,7 +31,7 @@ angular.module('app.pull-data-api', [])
 }])
 
 .config(["pullDataApiServiceProvider", function(pullDataApiServiceProvider){
-	pullDataApiServiceProvider.config("http://websites.avyay.co.in/sms-demo/api/");
+	pullDataApiServiceProvider.config("http://websites.avyay.co.in/bfc/api/");
 }])
 
 
