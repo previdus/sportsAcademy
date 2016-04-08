@@ -20,8 +20,6 @@ angular.module('app.userDb', [])
 
 
 	this.updateLoggedInUserDetails = function(user_id, name, apiKey, successClbk, dbAccessIssue){
-		if(!db)
-		successClbk();	
 		var query = "insert into m_loggedin_user(id, name, api_key) values(?,?,?)";
 		$cordovaSQLite.execute(db, "delete from m_loggedin_user",[])
 			.then(function(res){

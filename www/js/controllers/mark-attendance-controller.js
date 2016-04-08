@@ -51,13 +51,11 @@ angular.module('app.mark-attendance-controller', [])
 			var nonPresentList = [];
 
 			 angular.forEach($scope.students, function (student) {
-			 	
             	if(student.Selected)
             		presentList.push(student.student_id);
             	else
             		 nonPresentList.push(student.student_id);
         	});
-
 			 	var cDate = $scope.currentDate.getDate();
 				var cMonth = $scope.currentDate.getMonth() + 1;
 				var cYear = $scope.currentDate.getFullYear();
@@ -68,7 +66,6 @@ angular.module('app.mark-attendance-controller', [])
 			 			alert('Successfully saved');
 			 			$state.go('menu.syncData');
 			 		}, function dbISsue(){
-
 			 		})		
 		};
 		$scope.getStudents();

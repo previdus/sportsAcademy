@@ -26,7 +26,7 @@ angular.module('app.login-facade', [])
 							$rootScope.loggedInUser.id = userData.id;
 							$rootScope.loggedInUser.name = userData.name;
 							$rootScope.loggedInUser.apiKey = userData.api_key;
-							userDatabaseService.updateLoggedInUserDetails(userData.user_id,userData.name, userData.apiKey,successClbk,dbAccessIssue);
+							userDatabaseService.updateLoggedInUserDetails(userData.id,userData.name, userData.api_key,successClbk,dbAccessIssue);
 						}, 
 						function icorrectCredentialsClbk(){
 							internetIssueClbk();
