@@ -14,7 +14,16 @@ angular.module('app.mark-attendance-facade', [])
 
 	this.addAttendance = function(groupId, date, present_list, absent_list, successClbk, dbAccessIssueClbk){
 			grpAndStudentDatabaseService.saveAttendance(groupId, $rootScope.loggedInUser.id, date,present_list, absent_list, successClbk, dbAccessIssueClbk);
+	}
+
+	this.getAttendance = function(groupId, date, successClbk, dbAccessIssueClbk){
+
+		grpAndStudentDatabaseService.getAttendance(groupId, date,successClbk, dbAccessIssueClbk);
 	}	
+
+	this.deleteAttendance = function(groupId, date, successClbk, dbAccessIssueClbk){
+		grpAndStudentDatabaseService.deleteAttendance(groupId, date, successClbk, dbAccessIssueClbk);
+	}
 		
 
 }])

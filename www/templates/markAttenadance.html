@@ -4,20 +4,28 @@
            <button class="button button-block button-positive"> {{ currentDate | date:'MMMM/dd/yyyy' }} </button>
       </ionic-datepicker>
         	<h3>Selected Group: {{selectedGroupName}}</h3>
-        <ion-list>
-        	<ion-item ng-repeat="student in students" type="item-text-wrap" class="background-color:balanced">
-        		<div class="{{student.Color}}" ng-model="student.Color" ng-click="toggleChkBox(student)">
-        		<input type="checkbox" ng-model="student.Selected" style="display:none">
-        		{{student.name}}
+        <ion-list can-swipe="true">
+        	<ion-item ng-repeat="student in students" type="item-text-wrap" class="background-color:balanced" >
+        		<div style="margin-top: 1px" class="{{student.Color}}" ng-model="student.Color" ng-click="toggleChkBox(student)">
+        		      <input type="checkbox" ng-model="student.Selected" style="display:none">
+        		          {{student.name}}
         		</div>
+                <ion-option-button class="button-positive"
+                       ng-click="showStudentDetails(student)">
+                         Details
+                </ion-option-button>
         	</ion-item>
+            <ion-item>
+            </ion-item>
         </ion-list>
      
     </ion-content>
     <ion-footer-bar align-title="center" class="bar-assertive" ng-click="markAttenadance()">
   
    <h2 class="title"> Add Attendance </h2>
-   
+   <script type="text/ng-template" id="/tpl.html">
+         Name : {{name}}
+  </script>
   
 </ion-footer-bar>
 </ion-view>

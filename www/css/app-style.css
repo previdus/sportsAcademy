@@ -11,3 +11,12 @@
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
 }
+
+.video{
+    min-width: 100%;
+    min-height: 100%;
+    width:auto;
+    height: auto;
+    
+
+}
