@@ -74,9 +74,10 @@ angular.module('app.mark-attendance-controller', [])
 			var alertPopup = $ionicPopup.alert({
        			templateUrl: '/tpl.html',
        			scope : $scope
-     			});
+     		});
 				
-				$scope.name = student.name;
+			$scope.name = student.name;
+			$scope.doe = student.doe;
 			alertPopup.then(function(res) {
        			console.log('Thank you for not eating my delicious ice cream cone');
      		});

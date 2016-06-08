@@ -31,10 +31,10 @@ angular.module('app.grpAndStudentDb', [])
 			
 	}
 	
-	this.InsertStudent = function(studentId, studentName, groupId){	
+	this.InsertStudent = function(studentId, studentName, groupId, dos, doe){	
 		if(!db)
 			dbAccessIssue();
-		$cordovaSQLite.execute(db, "insert into m_students(student_id, name, group_id) values(?,?,?);",[studentId, studentName, groupId])
+		$cordovaSQLite.execute(db, "insert into m_students(student_id, name, group_id, dos, doe) values(?,?,?,?,?);",[studentId, studentName, groupId, dos, doe])
 			.then(function(res){
 				
 			},

@@ -3,13 +3,13 @@ angular.module('app.userDb', [])
 
 .service('userDatabaseService', ['$cordovaSQLite', function($cordovaSQLite){
 
-	this.updateUserDetails = function(user_id, name, apiKey, userName, password, successClbk, dbAccessIssue){
+	this.updateUserDetails = function(user_id, name, privilege, apiKey, userName, password, successClbk, dbAccessIssue){
 		if(!db)
 		successClbk();	
-		var query = "insert into m_users(id, name,user_name, pwd, api_key) values(?,?,?,?,?)";
+		var query = "insert into m_users(id, name, user_name, privilege, pwd, api_key) values(?,?,?,?,?,?)";
 		$cordovaSQLite.execute(db, "delete from m_users where id=?",[user_id])
 			.then(function(res){
-				$cordovaSQLite.execute(db,query,[user_id, name, userName, password, apiKey])
+				$cordovaSQLite.execute(db,query,[user_id, name, userName, privilege, password, apiKey])
 					.then(function(res){
 						successClbk();
 					 },
@@ -19,11 +19,11 @@ angular.module('app.userDb', [])
 	}
 
 
-	this.updateLoggedInUserDetails = function(user_id, name, apiKey, successClbk, dbAccessIssue){
-		var query = "insert into m_loggedin_user(id, name, api_key) values(?,?,?)";
+	this.updateLoggedInUserDetails = function(user_id, name, privilege, apiKey, successClbk, dbAccessIssue){
+		var query = "insert into m_loggedin_user(id, name, privilege, api_key) values(?,?,?,?)";
 		$cordovaSQLite.execute(db, "delete from m_loggedin_user",[])
 			.then(function(res){
-				$cordovaSQLite.execute(db,query,[user_id, name, apiKey])
+				$cordovaSQLite.execute(db,query,[user_id, name, privilege, apiKey])
 					.then(function(res){
 						successClbk();
 					 },

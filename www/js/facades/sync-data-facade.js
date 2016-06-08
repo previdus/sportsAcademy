@@ -21,7 +21,7 @@ angular.module('app.sync-data-facade', [])
 							grpAndStudentDatabaseService.InsertGrp(grpObj.group_id, grpObj.group_name, $rootScope.loggedInUser.id);	
 						});
 						angular.forEach(grpStudentData.students, function(studentObj,idx){
-							grpAndStudentDatabaseService.InsertStudent(studentObj.student_id, studentObj.student_name,studentObj.group_id);
+							grpAndStudentDatabaseService.InsertStudent(studentObj.student_id, studentObj.student_name,studentObj.group_id, studentObj.dos, studentObj.doe);
 						});
 
 						successClbk();
