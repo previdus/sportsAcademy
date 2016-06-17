@@ -24,6 +24,10 @@ angular.module('app.mark-attendance-facade', [])
 	this.deleteAttendance = function(groupId, date, successClbk, dbAccessIssueClbk){
 		grpAndStudentDatabaseService.deleteAttendance(groupId, date, successClbk, dbAccessIssueClbk);
 	}
+
+	this.fetchStudentDetails = function(student_id, successClbk, dbAccessIssueClbk){
+		grpAndStudentDatabaseService.deleteAttendance(student_id, successClbk, dbAccessIssueClbk);
+	}
 		
 
 }])
