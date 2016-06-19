@@ -1,7 +1,7 @@
 angular.module('app.mark-attendance-facade', [])
 
 
-.service('markAttenadanceFacade', ['grpAndStudentDatabaseService', '$rootScope', function(grpAndStudentDatabaseService,$rootScope){
+.service('markAttenadanceFacade', ['grpAndStudentDatabaseService', 'pullDataApiService','$rootScope', function(grpAndStudentDatabaseService,pullDataApiService,$rootScope){
 
 	this.getAllGroups = function(successClbk, dbAccessIssueClbk){
 
@@ -25,8 +25,8 @@ angular.module('app.mark-attendance-facade', [])
 		grpAndStudentDatabaseService.deleteAttendance(groupId, date, successClbk, dbAccessIssueClbk);
 	}
 
-	this.fetchStudentDetails = function(student_id, successClbk, dbAccessIssueClbk){
-		grpAndStudentDatabaseService.deleteAttendance(student_id, successClbk, dbAccessIssueClbk);
+	this.fetchStudentDetails = function(student_id, successClbk, internetAccessIssueClbk){
+		pullDataApiService.pullStudentsDetails($rootScope.loggedInUser.apiKey, student_id, successClbk, internetAccessIssueClbk);
 	}
 		
 

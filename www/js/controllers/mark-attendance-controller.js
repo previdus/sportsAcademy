@@ -1,11 +1,22 @@
 angular.module('app.mark-attendance-controller', [])
    
 
-.controller('markAttenadanceCtrl', ['$scope','$state' ,'$stateParams','$ionicPopup','markAttenadanceFacade' , function($scope, $state, $stateParams, $ionicPopup, markAttenadanceFacade) {
+.controller('markAttenadanceCtrl', ['$scope','$rootScope','$state' ,'$stateParams','$ionicPopup','markAttenadanceFacade' , function($scope, $rootScope, $state, $stateParams, $ionicPopup, markAttenadanceFacade) {
 	
   	$scope.students = [];
   	$scope.currentDate = new Date();
  
+  	$scope.isViewStudentDetailsAllowed = function(){
+  		console.log($rootScope.loggedInUserprivilege);
+  		if($rootScope.loggedInUserprivilege == 3)
+  			return true;
+  		else{
+  			console.log("You are not allowed to swipe");
+  			return false;
+  		}
+  		
+  	}
+
 	$scope.datePickerCallback = function (val) {
 		if (val) {	
 			$scope.currentDate = val;
@@ -78,6 +89,16 @@ angular.module('app.mark-attendance-controller', [])
 				
 			$scope.name = student.name;
 			$scope.doe = student.doe;
+			markAttenadanceFacade.fetchStudentDetails(student.student_id, 
+				function(studentDetails){
+					$scope.father = studentDetails.student.father;
+					$scope.mother = studentDetails.student.mother;
+					$scope.address = studentDetails.student.address;	
+					
+				}, function(){
+					console.log("Internet connection issue");
+				}
+			)
 			alertPopup.then(function(res) {
        			console.log('Thank you for not eating my delicious ice cream cone');
      		});

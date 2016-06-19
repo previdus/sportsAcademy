@@ -8,7 +8,7 @@ angular.module('app.pull-data-api', [])
             	 }
 
 	this.config = function(url){
-		pullUrl = url+ 'fetch-data.php?api_key=';
+		pullUrl = url;
 	};
 
 	this.$get = ['$log','$http',function($log, $http){
@@ -16,7 +16,19 @@ angular.module('app.pull-data-api', [])
 		
 			oPullService.pullGrpAndStudentsData = function(apiKey, successClbk, internetIssueClbk){
 			var data ="";
-            var fullPullUrl = pullUrl + apiKey;
+            var fullPullUrl = pullUrl + 'fetch-data.php?api_key=' + apiKey;
+			$http.get(fullPullUrl, data, config)
+            .success(function (data, status, headers, config) {          	
+            		successClbk(data);
+            })
+            .error(function (data, status, header, config) {
+                internetIssueClbk(status);
+            });
+		};
+
+		oPullService.pullStudentsDetails = function(apiKey, student_id, successClbk, internetIssueClbk){
+			var data ="";
+            var fullPullUrl = pullUrl + 'fetch-data-student.php?api_key=' + apiKey + "&student_id=" + student_id;
 			$http.get(fullPullUrl, data, config)
             .success(function (data, status, headers, config) {          	
             		successClbk(data);
@@ -34,39 +46,5 @@ angular.module('app.pull-data-api', [])
 	pullDataApiServiceProvider.config("http://websites.avyay.co.in/bfc/api/");
 }])
 
-
-.provider('pullStudent', [function(){
-
-	var pullUrl = "";
-	var config = { headers : 
-					{'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'}
-            	 }
-
-	this.config = function(url){
-		pullUrl = url+ 'fetch-data-student.php?api_key=';
-	};
-
-	this.$get = ['$log','$http',function($log, $http){
-		var oPullService = {};
-		
-			oPullService.pullGrpAndStudentsData = function(apiKey, successClbk, internetIssueClbk){
-			var data ="";
-            var fullPullUrl = pullUrl + apiKey;
-			$http.get(fullPullUrl, data, config)
-            .success(function (data, status, headers, config) {          	
-            		successClbk(data);
-            })
-            .error(function (data, status, header, config) {
-                internetIssueClbk(status);
-            });
-		};
-		return oPullService;
-	}];
-
-}])
-
-.config(["pullStudentProvider", function(pullDataApiServiceProvider){
-	pullDataApiServiceProvider.config("http://websites.avyay.co.in/bfc/api/");
-}])
 
 

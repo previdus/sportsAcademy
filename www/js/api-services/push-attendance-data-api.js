@@ -29,8 +29,8 @@ angular.module('app.push-data-api', [])
 
 }])
 
-.config(["pushDataApiServiceProvider", function(pullDataApiServiceProvider){
-	pullDataApiServiceProvider.config("http://websites.avyay.co.in/bfc/api/");
+.config(["pushDataApiServiceProvider", function(pushDataApiServiceProvider){
+	pushDataApiServiceProvider.config("http://websites.avyay.co.in/bfc/api/");
 
 }])
 

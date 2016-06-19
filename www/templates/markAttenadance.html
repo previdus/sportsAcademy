@@ -4,7 +4,7 @@
            <button class="button button-block button-positive"> {{ currentDate | date:'MMMM/dd/yyyy' }} </button>
       </ionic-datepicker>
         	<h3>Selected Group: {{selectedGroupName}}</h3>
-        <ion-list can-swipe="true">
+        <ion-list can-swipe="isViewStudentDetailsAllowed()">
         	<ion-item ng-repeat="student in students" type="item-text-wrap" class="background-color:balanced" >
         		<div style="margin-top: 1px" class="{{student.Color}}" ng-model="student.Color" ng-click="toggleChkBox(student)">
         		      <input type="checkbox" ng-model="student.Selected" style="display:none">
@@ -25,6 +25,9 @@
    <script type="text/ng-template" id="/tpl.html">
          Name : {{name}}
          Subscription End Date: {{doe}}
+         Father's Name: {{father}}
+         Mother's Name: {{mother}}
+         Address: {{address}}
    </script>
   
 </ion-footer-bar>

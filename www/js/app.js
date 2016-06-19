@@ -8,7 +8,7 @@
 var db = null;
 
 
-angular.module('app', ['ionic', 'ngCordova', 'ionic-datepicker' ,'app.controllers', 'app.facades', 'app.api-services', 'app.database-services','app.routes', 'app.directives', 'app.push-data-api'])
+angular.module('app', ['ionic', 'ngCordova', 'ionic-datepicker' ,'app.controllers', 'app.facades', 'app.api-services', 'app.database-services','app.routes', 'app.directives'])
 
 .run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
