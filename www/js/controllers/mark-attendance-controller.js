@@ -12,7 +12,7 @@ angular.module('app.mark-attendance-controller', [])
   			return true;
   		else{
   			console.log("You are not allowed to swipe");
-  			return false;
+  			return true;
   		}
   		
   	}
@@ -50,10 +50,10 @@ angular.module('app.mark-attendance-controller', [])
 
 							 if(absentList.indexOf(allStudents.item(i).student_id.toString()) != -1 ){
 								$scope.students[i].Selected = false;
-								$scope.students[i].Color = "bar bar-header bar-assertive";
+								$scope.students[i].Color = "red";
 							}else{
 								$scope.students[i].Selected = true;
-								$scope.students[i].Color = "bar bar-header bar-balanced";
+								$scope.students[i].Color = "green";
 							}
 						}
 					}
@@ -69,11 +69,11 @@ angular.module('app.mark-attendance-controller', [])
 
 		$scope.toggleChkBox = function(studentObj){
 			if(studentObj.Selected){
-				studentObj.Color = "bar bar-header bar-assertive";
+				studentObj.Color = "red";
 				studentObj.Selected = false;
 			}
 			else{
-				studentObj.Color = "bar bar-header bar-balanced";
+				studentObj.Color = "green";
 				studentObj.Selected = true;
 			}
 		}

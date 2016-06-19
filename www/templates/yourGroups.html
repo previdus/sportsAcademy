@@ -1,11 +1,13 @@
-<ion-view title="Your Groups">
+<ion-view title="Groups" class="groups">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <form class="list"></form>
-        <h3>Select your Group</h3>
+        <h1>Select your Group</h1>
         <ion-list>
         	<ion-item ng-repeat="group in groups" type="item-text-wrap" href="#/side-menu/groups/{{group.group_id}}/{{group.name}}">
-        			{{group.name}} 
+        		{{group.name}} 
         	</ion-item>
         </ion-list>
+        <p>
+        	Please sync data to server in case you can not see your groups.
+        </p>
     </ion-content>
 </ion-view>

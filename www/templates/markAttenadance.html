@@ -1,34 +1,37 @@
-<ion-view title="Mark Attenadance" >
+<ion-view title="Attenadance" class="attendance">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
+
         <ionic-datepicker date="currentDate" min="" max="" callback="datePickerCallback">
-           <button class="button button-block button-positive"> {{ currentDate | date:'MMMM/dd/yyyy' }} </button>
-      </ionic-datepicker>
-        	<h3>Selected Group: {{selectedGroupName}}</h3>
+            <button class="button button-block button-assertive button-outline">
+                {{ currentDate | date:'MMMM/dd/yyyy' }}
+            </button>
+        </ionic-datepicker>
+        
+        <h1>Group : {{selectedGroupName}}</h1>
+        
         <ion-list can-swipe="isViewStudentDetailsAllowed()">
-        	<ion-item ng-repeat="student in students" type="item-text-wrap" class="background-color:balanced" >
-        		<div style="margin-top: 1px" class="{{student.Color}}" ng-model="student.Color" ng-click="toggleChkBox(student)">
-        		      <input type="checkbox" ng-model="student.Selected" style="display:none">
-        		          {{student.name}}
+        	<ion-item ng-repeat="student in students" type="item-text-wrap" class="item {{student.Color}}" ng-click="toggleChkBox(student)">
+        		<div  ng-model="student.Color">
+                    <input type="checkbox" ng-model="student.Selected" style="display:none">
+                    {{student.name}}
         		</div>
-                <ion-option-button class="button-positive" ng-click="showStudentDetails(student)">
-                         Details
+                <ion-option-button class="button-dark" ng-click="showStudentDetails(student)" style="min-height:auto; font-size:13px">
+                    Details
                 </ion-option-button>
         	</ion-item>
-            <ion-item>
-            </ion-item>
         </ion-list>
      
     </ion-content>
-    <ion-footer-bar align-title="center" class="bar-assertive" ng-click="markAttenadance()">
-  
-   <h2 class="title"> Add Attendance </h2>
-   <script type="text/ng-template" id="/tpl.html">
+
+    <ion-footer-bar align-title="center" class="bar-light bar bar-footer" ng-click="markAttenadance()" style="padding:0">
+        <button class="button button-full button-royal">Save Attendance</button>
+    </ion-footer-bar>
+
+    <script type="text/ng-template" id="/tpl.html">
          Name : {{name}}
          Subscription End Date: {{doe}}
          Father's Name: {{father}}
          Mother's Name: {{mother}}
          Address: {{address}}
    </script>
-  
-</ion-footer-bar>
 </ion-view>

@@ -1,22 +1,2 @@
-.box
-{
-    height: 150px;
-    width: 600px;
-    font-size: 24px;
-    font-style: oblique;
-    text-align: center;
-    padding: 0 20px;
-    margin: 20px;
-    display: flex;
-    justify-content: center; /* align horizontal */
-    align-items: center; /* align vertical */
-}
-
-.video{
-    min-width: 100%;
-    min-height: 100%;
-    width:auto;
-    height: auto;
-    
-
-}
+.login{text-align:center}.login img{margin-top:50px;max-width:75%;height:auto}.login h1{text-align:center;font-weight:normal;font-size:20px;color:#888;text-transform:uppercase}.login button.button{width:240px;margin:0 auto;margin-top:20px;text-transform:uppercase}.groups h1{text-align:center;font-weight:normal;font-size:20px;color:#888;text-transform:uppercase}.groups a.item-content{text-align:center;color:#ef473a}.groups p{margin:10px 0;text-align:center;color:#888}.attendance h1{text-align:center;font-weight:normal;font-size:20px;color:#888;text-transform:uppercase}.attendance .green{background:#22a70a;color:#FFF;text-transform:uppercase;text-align:center;font-size:14px;padding:10px}.attendance .red{background:#d22424;color:#FFF;text-transform:uppercase;text-align:center;font-size:14px;padding:10px}.attendance .button.button-royal{margin-top:0 !important;height:100%;text-transform:uppercase;font-size:15px}.box{height:150px;width:600px;font-size:24px;font-style:oblique;text-align:center;padding:0 20px;margin:20px;display:flex;justify-content:center;align-items:center}.video{min-width:100%;min-height:100%;width:auto;height:auto}
+/*# sourceMappingURL=app-style.css.map */
