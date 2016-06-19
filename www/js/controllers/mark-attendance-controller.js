@@ -84,11 +84,15 @@ angular.module('app.mark-attendance-controller', [])
 		$scope.showStudentDetails = function(student){
 			var alertPopup = $ionicPopup.alert({
        			templateUrl: '/tpl.html',
-       			scope : $scope
+       			scope : $scope,
+       			title : 'Details',
      		});
 				
 			$scope.name = student.name;
 			$scope.doe = student.doe;
+			$scope.father = '';
+			$scope.mother = '';
+			$scope.address = '';
 			markAttenadanceFacade.fetchStudentDetails(student.student_id, 
 				function(studentDetails){
 					$scope.father = studentDetails.student.father;

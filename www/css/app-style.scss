@@ -71,6 +71,16 @@
     }
 }
 
+.popup-container.active .popup{
+    width: 95%;
+    .list{
+
+        .item{
+            background: transparent;
+            padding: 8px;
+        }
+    }
+}
 .box
 {
     height: 150px;
