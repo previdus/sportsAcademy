@@ -50,7 +50,7 @@ angular.module('app.sync-data-facade', [])
 							attendance.rowid, 
 							function success(data, row_id){
 								if(data.success){
-									grpAndStudentDatabaseService.deleteAttendance(row_id);
+									grpAndStudentDatabaseService.deleteAttendanceRow(row_id);
 									$scope.noOfAttendanceToBeSavedToServer = $scope.noOfAttendanceToBeSavedToServer-1;
 								}
 							},internetIssueClbk

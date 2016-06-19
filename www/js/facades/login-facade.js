@@ -12,6 +12,7 @@ angular.module('app.login-facade', [])
 					$rootScope.loggedInUser.name = userData.name;
 					$rootScope.loggedInUser.apiKey = userData.apiKey;
 					$rootScope.loggedInUserprivilege   = userData.privilege;
+					console.log($rootScope.loggedInUser);
 					userDatabaseService.updateLoggedInUserDetails(userData.user_id, userData.name, userData.privilege, userData.apiKey,function success(){
 						userDatabaseService.updateUserDetails(userData.user_id, userData.name, userData.privilege, userData.apiKey, username, password, successClbk, 
 						function datebaseIssueClbk(){

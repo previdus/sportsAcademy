@@ -14,7 +14,7 @@ angular.module('app.login-controller', [])
 	
 	$scope.loginData = {};
 	$rootScope.loggedInUser = {};
-
+	console.log($rootScope.loggedInUser);
 	$scope.currentDate = new Date();
  
 	$scope.datePickerCallback = function () {
