@@ -124,7 +124,7 @@ angular.module('app.grpAndStudentDb', [])
 		var query = "delete from m_attendance where group_id = ? and  date = ? and user_id in (select id from m_loggedin_user) ";
 		$cordovaSQLite.execute(db,query,[groupId,date]).then(function(result) {
 			// nothing
-			console.log('deleted');
+			successClbk();
 		}, function(error) {
 			dbAccessIssueClbk();
 		});

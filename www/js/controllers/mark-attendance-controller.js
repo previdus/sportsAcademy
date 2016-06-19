@@ -123,18 +123,16 @@ angular.module('app.mark-attendance-controller', [])
 				var cMonth = $scope.currentDate.getMonth() + 1;
 				var cYear = $scope.currentDate.getFullYear();
 				var selectedDate = cDate + "-" + cMonth + "-" + cYear;
+
 				markAttenadanceFacade.deleteAttendance($scope.selectedGrpId,selectedDate, 
-					function success()
-					{
+					function success(){
 						markAttenadanceFacade.addAttendance($scope.selectedGrpId ,selectedDate,presentList, nonPresentList, 
 			 				function success(){
-			 					alert('Successfully saved');
 			 					$state.go('menu.syncData');
 			 				}, 
 			 				function dbISsue(){
 			 				}
 			 			)
-
 					},
 					function dbIssue(){
 
