@@ -14,16 +14,12 @@ angular.module('app.login-controller', [])
 	
 	$scope.loginData = {};
 	$rootScope.loggedInUser = {};
-	console.log($rootScope.loggedInUser);
+	
 	$scope.currentDate = new Date();
  
 	$scope.datePickerCallback = function () {
 		var val = '';
-		if (!val) {	
-			console.log('Date not selected');
-		} else {
-			console.log('Selected date is : ', val);
-		}
+		
 	};
 
 	$scope.closeLogin = function(){

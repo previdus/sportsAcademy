@@ -7,11 +7,9 @@ angular.module('app.mark-attendance-controller', [])
   	$scope.currentDate = new Date();
  
   	$scope.isViewStudentDetailsAllowed = function(){
-  		console.log($rootScope.loggedInUserprivilege);
   		if($rootScope.loggedInUserprivilege == 3)
   			return true;
   		else{
-  			console.log("You are not allowed to swipe");
   			return true;
   		}
   		
@@ -98,11 +96,11 @@ angular.module('app.mark-attendance-controller', [])
 					$scope.address = studentDetails.student.address;	
 					
 				}, function(){
-					console.log("Internet connection issue");
+					
 				}
 			)
 			alertPopup.then(function(res) {
-       			console.log('Thank you for not eating my delicious ice cream cone');
+       			
      		});
 		}
 
