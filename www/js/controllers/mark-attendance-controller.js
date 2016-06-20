@@ -36,11 +36,9 @@ angular.module('app.mark-attendance-controller', [])
 		
 		var absentList = [];
 		
-		markAttenadanceFacade.getAttendance($stateParams.groupId, selectedDate,
+		markAttenadanceFacade.getAbsentList($stateParams.groupId, selectedDate,
 			function success(attendances){
-				if(attendances.length > 0){
-					 absentList = attendances.item(0).absent_list.split(",");				
-				}
+					 absentList = attendances;				
 
 				markAttenadanceFacade.getAllStudents($scope.selectedGrpId,
 				function success(allStudents){

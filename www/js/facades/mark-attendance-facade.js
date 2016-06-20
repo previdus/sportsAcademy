@@ -28,6 +28,28 @@ angular.module('app.mark-attendance-facade', [])
 	this.fetchStudentDetails = function(student_id, successClbk, internetAccessIssueClbk){
 		pullDataApiService.pullStudentsDetails($rootScope.loggedInUser.apiKey, student_id, successClbk, internetAccessIssueClbk);
 	}
+
+	this.getAbsentList = function(groupId, date, successClbk, dbAccessIssueClbk){
+
+		grpAndStudentDatabaseService.getAttendance(groupId, date,
+		function(attendances)
+		{
+			if(attendances.length > 0){
+				successClbk(attendances.item(0).absent_list.split(","));
+			}else
+			{
+				pullDataApiService.pullAttendance(groupId, date, 
+					function(attendance){
+						successClbk(attendance.absent);
+				},
+				function(){
+					var atteandance = [];
+					successClbk(atteandance);
+				});
+			}
+		
+		}, dbAccessIssueClbk);
+	}
 		
 
 }])

@@ -10,7 +10,7 @@ var db = null;
 
 angular.module('app', ['ionic', 'ngCordova', 'ionic-datepicker' ,'app.controllers', 'app.facades', 'app.api-services', 'app.database-services','app.routes', 'app.directives'])
 
-.run(function($ionicPlatform, $cordovaSQLite) {
+.run(function($ionicPlatform, $cordovaSQLite, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -26,12 +26,14 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic-datepicker' ,'app.controller
       } else {
         db = window.openDatabase('accounts', '1.0', 'accounts.db', 100 * 1024 * 1024);
       }
-    //db = $cordovaSQLite.openDB("my.db");
+
+      $rootScope.apiUrl = "http://websites.avyay.co.in/bfc/api/";
+     //db = $cordovaSQLite.openDB("my.db");
     // $cordovaSQLite.execute(db, "DROP TABLE m_users");
-    // $cordovaSQLite.execute(db, "DROP TABLE m_loggedin_user");
-    // $cordovaSQLite.execute(db, "DROP TABLE m_groups");
-    // $cordovaSQLite.execute(db, "DROP TABLE m_students");
-    // $cordovaSQLite.execute(db, "DROP TABLE m_attendance");
+     //$cordovaSQLite.execute(db, "DROP TABLE m_loggedin_user");
+     //$cordovaSQLite.execute(db, "DROP TABLE m_groups");
+     //$cordovaSQLite.execute(db, "DROP TABLE m_students");
+     //$cordovaSQLite.execute(db, "DROP TABLE m_attendance");
 
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_users (id INTEGER NOT NULL PRIMARY KEY, name TEXT NOT NULL, user_name TEXT NOT NULL, pwd TEXT NOT NULL, privilege INTEGER NOT NULL, api_key TEXT NOT NULL)");
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_loggedin_user (id INTEGER NOT NULL PRIMARY KEY, name TEXT NOT NULL, privilege INTEGER NOT NULL, api_key TEXT NOT NULL)");

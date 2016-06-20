@@ -7,13 +7,9 @@ angular.module('app.pull-data-api', [])
 					{'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'}
             	 }
 
-	this.config = function(url){
-		pullUrl = url;
-	};
-
-	this.$get = ['$log','$http',function($log, $http){
+	this.$get = ['$log','$http','$rootScope',function($log, $http, $rootScope){
 		var oPullService = {};
-		
+			pullUrl = $rootScope.apiUrl;
 			oPullService.pullGrpAndStudentsData = function(apiKey, successClbk, internetIssueClbk){
 			var data ="";
             var fullPullUrl = pullUrl + 'fetch-data.php?api_key=' + apiKey;
@@ -30,6 +26,19 @@ angular.module('app.pull-data-api', [])
 			var data ="";
             var fullPullUrl = pullUrl + 'fetch-data-student.php?api_key=' + apiKey + "&student_id=" + student_id;
 			$http.get(fullPullUrl, data, config)
+            .success(function (data, status, headers, config) {
+                      	
+            		successClbk(data);
+            })
+            .error(function (data, status, header, config) {
+                internetIssueClbk(status);
+            });
+		};
+
+		oPullService.pullAttendance = function(groupId, date, successClbk, internetIssueClbk){
+			var data ="";
+            var fullPullUrl = pullUrl + 'fetch-data-attendance.php?group_id=' + groupId + "&date=" + date;
+			$http.get(fullPullUrl, data, config)
             .success(function (data, status, headers, config) {          	
             		successClbk(data);
             })
@@ -43,7 +52,7 @@ angular.module('app.pull-data-api', [])
 }])
 
 .config(["pullDataApiServiceProvider", function(pullDataApiServiceProvider){
-	pullDataApiServiceProvider.config("http://websites.avyay.co.in/bfc/api/");
+	
 }])
 
 

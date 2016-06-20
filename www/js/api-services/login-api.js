@@ -2,22 +2,21 @@ angular.module('app.login-api', [])
 
 .provider('loginApiService', [function(){
 
-	var loginUrl = "";
+	var relativeUrl = "";
 	var config = { headers : 
 					{'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'}
             	 }
 
 	this.config = function(url){
-		apiBaseUrl = url;
-		loginUrl = url+ 'login-exec.php';
+		relativeUrl = url;
 	};
 
-	this.$get = ['$log','$http',function($log, $http){
+	this.$get = ['$log','$http', '$rootScope',function($log, $http, $rootScope){
 		var ologinService = {};
 		
 		ologinService.authenticateCredentials = function(username, password, successClbk, incorrectCredentialsClbk, internetIssueClbk){
 			var data ="username=" + username + "&password=" +password;
-            
+            var loginUrl = $rootScope.apiUrl + relativeUrl;
 			$http.post(loginUrl, data, config)
             .success(function (data, status, headers, config) {
             	
@@ -37,7 +36,7 @@ angular.module('app.login-api', [])
 }])
 
 .config(["loginApiServiceProvider", function(loginApiServiceProvider){
-	loginApiServiceProvider.config("http://websites.avyay.co.in/bfc/api/");
+	loginApiServiceProvider.config("login-exec.php");
 }])
 
 
