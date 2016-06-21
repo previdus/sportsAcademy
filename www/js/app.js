@@ -22,22 +22,22 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic-datepicker' ,'app.controller
       StatusBar.styleDefault();
     }
     if (window.cordova && window.SQLitePlugin) {
-       db = $cordovaSQLite.openDB( 'accounts.db');
+       db = $cordovaSQLite.openDB('bbfs1.db');
       } else {
-        db = window.openDatabase('accounts', '1.0', 'accounts.db', 100 * 1024 * 1024);
+        db = window.openDatabase('bbfs1', '1.0', 'bbfs1.db', 100 * 1024 * 1024);
       }
 
       $rootScope.apiUrl = "http://websites.avyay.co.in/bfc/api/";
-     //db = $cordovaSQLite.openDB("my.db");
-    // $cordovaSQLite.execute(db, "DROP TABLE m_users");
-     //$cordovaSQLite.execute(db, "DROP TABLE m_loggedin_user");
-     //$cordovaSQLite.execute(db, "DROP TABLE m_groups");
-     //$cordovaSQLite.execute(db, "DROP TABLE m_students");
-     //$cordovaSQLite.execute(db, "DROP TABLE m_attendance");
+     
+     // $cordovaSQLite.execute(db, "DROP TABLE m_users");
+     // $cordovaSQLite.execute(db, "DROP TABLE m_loggedin_user");
+     // $cordovaSQLite.execute(db, "DROP TABLE m_groups");
+     // $cordovaSQLite.execute(db, "DROP TABLE m_students");
+     // $cordovaSQLite.execute(db, "DROP TABLE m_attendance");
 
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_users (id INTEGER NOT NULL PRIMARY KEY, name TEXT NOT NULL, user_name TEXT NOT NULL, pwd TEXT NOT NULL, privilege INTEGER NOT NULL, api_key TEXT NOT NULL)");
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_loggedin_user (id INTEGER NOT NULL PRIMARY KEY, name TEXT NOT NULL, privilege INTEGER NOT NULL, api_key TEXT NOT NULL)");
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_groups (group_id INTEGER NOT NULL , name TEXT NOT NULL, user_id INTEGER NOT NULL)");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_groups (group_id INTEGER NOT NULL, name TEXT NOT NULL, center_name TEXT NOT NULL, user_id INTEGER NOT NULL)");
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_students (student_id INTEGER NOT NULL, name TEXT NOT NULL, dos DATE NOT NULL, doe DATE NOT NULL, group_id INTEGER NOT NULL)");
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS m_attendance (group_id INTEGER NOT NULL,date DATE NOT NULL,user_id INTEGER NOT NULL, present_list TEXT NOT NULL, absent_list TEXT NOT NULL)");
     

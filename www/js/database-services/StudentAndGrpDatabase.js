@@ -20,15 +20,15 @@ angular.module('app.grpAndStudentDb', [])
 	}
 	
 	
-	this.InsertGrp = function(groupId, groupName, userId){
+	this.InsertGrp = function(groupId, groupName, centerName, userId){
 		if(!db)
 			dbAccessIssue();
-		$cordovaSQLite.execute(db, "insert into m_groups(group_id, name, user_id) values(?,?,?);",[groupId, groupName, userId])
+
+			$cordovaSQLite.execute(db, "insert into m_groups (group_id, name, center_name, user_id) values(?,?,?,?);",[groupId, groupName, centerName, userId])
 			.then(function(res){
-				
-			},
-			function(err){})
-			
+
+			}, function(err){}
+		)
 	}
 	
 	this.InsertStudent = function(studentId, studentName, groupId, dos, doe){	
@@ -82,7 +82,7 @@ angular.module('app.grpAndStudentDb', [])
 		if(!db)
 			dbAccessIssue();
 
-		var query = "select * from m_groups where user_id in (select id from m_loggedin_user)";
+		var query = "select * from m_groups where user_id in (select id from m_loggedin_user) order by center_name asc";
 		$cordovaSQLite.execute(db,query,[]).then(function(result) {
 			successClbk(result.rows);
 		}, function(error) {

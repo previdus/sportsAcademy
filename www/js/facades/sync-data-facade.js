@@ -18,7 +18,8 @@ angular.module('app.sync-data-facade', [])
 				grpAndStudentDatabaseService.deleteAllGrpsAndStudents( 
 					function success(){
 						angular.forEach(grpStudentData.groups, function(grpObj,idx){
-							grpAndStudentDatabaseService.InsertGrp(grpObj.group_id, grpObj.group_name, $rootScope.loggedInUser.id);	
+							
+							grpAndStudentDatabaseService.InsertGrp(grpObj.group_id, grpObj.group_name, grpObj.center_name, $rootScope.loggedInUser.id);	
 						});
 						angular.forEach(grpStudentData.students, function(studentObj,idx){
 							grpAndStudentDatabaseService.InsertStudent(studentObj.student_id, studentObj.student_name,studentObj.group_id, studentObj.dos, studentObj.doe);
@@ -49,6 +50,7 @@ angular.module('app.sync-data-facade', [])
 							attendance.absent_list,
 							attendance.rowid, 
 							function success(data, row_id){
+								$scope.loader_show = false;
 								if(data.success){
 									grpAndStudentDatabaseService.deleteAttendanceRow(row_id);
 									$scope.noOfAttendanceToBeSavedToServer = $scope.noOfAttendanceToBeSavedToServer-1;
