@@ -27,7 +27,7 @@ angular.module('app.pull-data-api', [])
             var fullPullUrl = pullUrl + 'fetch-data-student.php?api_key=' + apiKey + "&student_id=" + student_id;
 			$http.get(fullPullUrl, data, config)
             .success(function (data, status, headers, config) {
-                      	
+                    console.log(data);
             		successClbk(data);
             })
             .error(function (data, status, header, config) {

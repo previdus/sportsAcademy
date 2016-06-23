@@ -32,7 +32,13 @@
             <div class="item">Name : <b>{{name}}</b></div>
             <div class="item">Subscription End : <b>{{doe}}</b></div>
             <div class="item">Father's Name : <b>{{father}}</b></div>
+            <div class="item">Father's Mob : <b>{{father_mob}}</b></div>
             <div class="item">Mother's Name : <b>{{mother}}</b></div>
+            <div class="item">Mother's Mob : <b>{{mother_mob}}</b></div>
+            <div class="item">Category : <b>{{category}}</b></div>
+            <div class="item">School : <b>{{school}}</b></div>
+            <div class="item">Address : <b>{{address}}</b></div>
+            <div ng-repeat="payment in payments" class="item item-text-wrap">Subscription: <b>{{payment.details}}</b></div>
         </div>
    </script>
 </ion-view>

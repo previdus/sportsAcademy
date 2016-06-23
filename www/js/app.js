@@ -27,7 +27,7 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic-datepicker' ,'app.controller
         db = window.openDatabase('bbfs1', '1.0', 'bbfs1.db', 100 * 1024 * 1024);
       }
 
-      $rootScope.apiUrl = "http://websites.avyay.co.in/bfc/api/";
+      $rootScope.apiUrl = "http://www.bbfootballschools.com/admin/api/";
      
      // $cordovaSQLite.execute(db, "DROP TABLE m_users");
      // $cordovaSQLite.execute(db, "DROP TABLE m_loggedin_user");

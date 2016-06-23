@@ -7,7 +7,7 @@ angular.module('app.mark-attendance-controller', [])
   	$scope.currentDate = new Date();
  
   	$scope.isViewStudentDetailsAllowed = function(){
-  		if($rootScope.loggedInUserprivilege == 3)
+  		if($rootScope.loggedInUserprivilege == 1)
   			return true;
   		else{
   			return true;
@@ -36,14 +36,15 @@ angular.module('app.mark-attendance-controller', [])
 		
 		markAttenadanceFacade.getAbsentList($stateParams.groupId, selectedDate,
 			function success(attendances){
-					 absentList = attendances;				
+				console.log(attendances);
+				absentList = attendances;				
 
 				markAttenadanceFacade.getAllStudents($scope.selectedGrpId,
 				function success(allStudents){
+					
 					if(allStudents.length > 0){
 						for(var i = 0; i< allStudents.length; i++){
 							$scope.students.push(allStudents.item(i));
-
 							 if(absentList.indexOf(allStudents.item(i).student_id.toString()) != -1 ){
 								$scope.students[i].Selected = false;
 								$scope.students[i].Color = "red";
@@ -94,6 +95,12 @@ angular.module('app.mark-attendance-controller', [])
 					$scope.father = studentDetails.student.father;
 					$scope.mother = studentDetails.student.mother;
 					$scope.address = studentDetails.student.address;	
+					$scope.category = studentDetails.student.category;	
+					$scope.address = studentDetails.student.address;
+					$scope.school = studentDetails.student.school;	
+					$scope.father_mob = studentDetails.student.father_mob;
+					$scope.mother_mob = studentDetails.student.mother_mob;
+					$scope.payments = studentDetails.student.payments;
 					
 				}, function(){
 					

@@ -96,7 +96,7 @@ angular.module('app.grpAndStudentDb', [])
 	this.getStudents = function(groupId, successClbk, dbAccessIssueClbk){
 		if(!db)
 			dbAccessIssue();
-		var query = "select * from m_students where group_id = ?";
+		var query = "select distinct student_id, name, dos, doe from m_students where group_id = ? order by name asc";
 		$cordovaSQLite.execute(db,query,[groupId]).then(function(result) {
 			successClbk(result.rows);
 		}, function(error) {

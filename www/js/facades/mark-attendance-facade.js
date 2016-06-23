@@ -36,15 +36,14 @@ angular.module('app.mark-attendance-facade', [])
 		{
 			if(attendances.length > 0){
 				successClbk(attendances.item(0).absent_list.split(","));
-			}else
-			{
+			} else {
 				pullDataApiService.pullAttendance(groupId, date, 
 					function(attendance){
 						successClbk(attendance.absent);
 				},
 				function(){
-					var atteandance = [];
-					successClbk(atteandance);
+					var attendance = [];
+					successClbk(attendance);
 				});
 			}
 		
