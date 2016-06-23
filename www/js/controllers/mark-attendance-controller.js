@@ -10,7 +10,8 @@ angular.module('app.mark-attendance-controller', [])
   		if($rootScope.loggedInUserprivilege == 1)
   			return true;
   		else{
-  			return true;
+  			console.log('false');
+  			return false;
   		}
   		
   	}
