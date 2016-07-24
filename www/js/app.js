@@ -8,7 +8,7 @@
 var db = null;
 
 
-angular.module('app', ['ionic', 'ngCordova', 'ionic-datepicker' ,'app.controllers', 'app.facades', 'app.api-services', 'app.database-services','app.routes', 'app.directives'])
+angular.module('app', ['ionic', 'ngCordova', 'onezone-datepicker' ,'app.controllers', 'app.facades', 'app.api-services', 'app.database-services','app.routes', 'app.directives'])
 
 .run(function($ionicPlatform, $cordovaSQLite, $rootScope) {
   $ionicPlatform.ready(function() {
@@ -22,12 +22,13 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic-datepicker' ,'app.controller
       StatusBar.styleDefault();
     }
     if (window.cordova && window.SQLitePlugin) {
-       db = $cordovaSQLite.openDB('bbfs1.db');
+       db = $cordovaSQLite.openDB({name: "bbfs1.db", location: 1});
       } else {
         db = window.openDatabase('bbfs1', '1.0', 'bbfs1.db', 100 * 1024 * 1024);
-      }
+    }
 
       $rootScope.apiUrl = "http://www.bbfootballschools.com/admin/api/";
+      // alert('asd');
      
      // $cordovaSQLite.execute(db, "DROP TABLE m_users");
      // $cordovaSQLite.execute(db, "DROP TABLE m_loggedin_user");
@@ -43,4 +44,3 @@ angular.module('app', ['ionic', 'ngCordova', 'ionic-datepicker' ,'app.controller
     
   });
 })
-

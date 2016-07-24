@@ -1,11 +1,17 @@
 <ion-view title="Attenadance" class="attendance">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
 
-        <ionic-datepicker date="currentDate" min="" max="" callback="datePickerCallback">
+        <!-- <ionic-datepicker date="currentDate" min="" max="" callback="datePickerCallback">
             <button class="button button-block button-assertive button-outline">
                 {{ currentDate | date:'MMMM/dd/yyyy' }}
             </button>
-        </ionic-datepicker>
+        </ionic-datepicker> -->
+
+        <onezone-datepicker datepicker-object="onezoneDatepicker">
+            <button class="button button-block button-outline button-positive show-onezone-datepicker">
+                {{onezoneDatepicker.date | date:'dd MMMM yyyy'}} 
+            </button>
+        </onezone-datepicker>
         
         <h1>Group : {{selectedGroupName}}</h1>
         

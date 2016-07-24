@@ -6,6 +6,7 @@ angular.module('app.login-facade', [])
 	
 
 	this.login = function(username, password, successClbk, incorrectCredentialsClbk, internetIssueMainClbk, dbAccessIssue){
+			alert('facade');
 			loginApiService.authenticateCredentials(username, password, 
 				function success(userData){
 					$rootScope.loggedInUser.id = userData.user_id;

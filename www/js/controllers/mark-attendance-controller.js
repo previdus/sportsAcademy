@@ -1,10 +1,34 @@
 angular.module('app.mark-attendance-controller', [])
    
 
-.controller('markAttenadanceCtrl', ['$scope','$rootScope','$state' ,'$stateParams','$ionicPopup','markAttenadanceFacade' , function($scope, $rootScope, $state, $stateParams, $ionicPopup, markAttenadanceFacade) {
+.controller('markAttenadanceCtrl', ['$scope','$rootScope','$state' ,'$stateParams','$ionicPopup','markAttenadanceFacade', function($scope, $rootScope, $state, $stateParams, $ionicPopup, markAttenadanceFacade) {
 	
   	$scope.students = [];
   	$scope.currentDate = new Date();
+
+  	$scope.onezoneDatepicker = {
+	    date: $scope.currentDate, // MANDATORY                     
+	    // mondayFirst: false,                
+	    // months: months,                    
+	    // daysOfTheWeek: daysOfTheWeek,     
+	    // startDate: startDate,             
+	    endDate: $scope.currentDate,                   
+	    // disablePastDays: false,
+	    // disableSwipe: false,
+	    // disableWeekend: false,
+	    // disableDates: disableDates,
+	    // disableDaysOfWeek: disableDaysOfWeek,
+	    // showDatepicker: false,
+	    // showTodayButton: true,
+	    // calendarMode: true,
+	    hideCancelButton: true,
+	    // hideSetButton: false,
+	    // highlights: highlights,
+	    callback: function(value){
+		    $scope.currentDate = value;
+	    }
+	};
+
  
   	$scope.isViewStudentDetailsAllowed = function(){
   		if($rootScope.loggedInUserprivilege == 1)
@@ -121,12 +145,13 @@ angular.module('app.mark-attendance-controller', [])
             	if(student.Selected)
             		presentList.push(student.student_id);
             	else
-            		 nonPresentList.push(student.student_id);
+            		nonPresentList.push(student.student_id);
         	});
 			 	var cDate = $scope.currentDate.getDate();
 				var cMonth = $scope.currentDate.getMonth() + 1;
 				var cYear = $scope.currentDate.getFullYear();
 				var selectedDate = cDate + "-" + cMonth + "-" + cYear;
+				alert(selectedDate);
 
 				markAttenadanceFacade.deleteAttendance($scope.selectedGrpId,selectedDate, 
 					function success(){

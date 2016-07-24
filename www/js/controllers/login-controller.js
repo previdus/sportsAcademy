@@ -10,8 +10,9 @@ angular.module('app.login-controller', [])
 
 
    
-.controller('loginCtrl', ['$scope','$rootScope','$state' , '$ionicModal','loginFacade', '$cordovaDatePicker' , function($scope, $rootScope,$state, $ionicModal, loginFacade, $cordovaDatePicker) {
+.controller('loginCtrl', ['$scope','$rootScope','$state' , '$ionicModal','loginFacade', '$cordovaDatePicker', '$ionicPlatform' , function($scope, $rootScope,$state, $ionicModal, loginFacade, $cordovaDatePicker, $ionicPlatform) {
 	
+
 	$scope.loginData = {};
 	$rootScope.loggedInUser = {};
 	
@@ -27,7 +28,7 @@ angular.module('app.login-controller', [])
 	}
 
 	$scope.authenticateCredentials = function(){
-			
+			alert('press');
 			loginFacade.login($scope.loginData.username, $scope.loginData.password, 
 				function success(){
 					$state.go('menu.yourGroups'); 
@@ -44,6 +45,7 @@ angular.module('app.login-controller', [])
 	$scope.logout = function(){
 		loginFacade.logout(function(){}, function(){});
 	}	
+
 
 	//$scope.logout();
 	

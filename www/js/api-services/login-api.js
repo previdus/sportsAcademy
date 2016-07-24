@@ -19,7 +19,7 @@ angular.module('app.login-api', [])
             var loginUrl = $rootScope.apiUrl + relativeUrl;
 			$http.post(loginUrl, data, config)
             .success(function (data, status, headers, config) {
-            	
+            	alert('done');
             	if(data.success)
             		successClbk(data);
             	else		
